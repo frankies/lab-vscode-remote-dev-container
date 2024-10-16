@@ -24,9 +24,7 @@ jobs:
       run: ./gradlew build -xtest
 
     - name: Trivy with Gradle
-      run: 
-       - ./gradlew generateLockfile
-       - cat 
+      run: ./gradlew generateLockfile && cat ./build/gradle.lockfile
        
 
     - name: Run Trivy vulnerability scanner in fs mode
