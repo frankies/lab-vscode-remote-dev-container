@@ -35,6 +35,9 @@
 		}
 	},
 
+//	"runArgs": ["--init", "--privileged"],
+  //   "overrideCommand": false
+
 
 	  // 挂载 volume，将本地的 pnpm 目录挂载到容器中，共享一个 pnpm 目录，节省空间
 	//   "mounts": [

@@ -35,14 +35,12 @@ tasks.named('test') {
 task generateLockfile {
   doLast {
     def allRuntimeDependencies = [:]  // map used for deduplication
-    subprojects.each { subproject ->
-      subproject.configurations.runtimeClasspath.resolvedConfiguration.resolvedArtifacts.each { artifact ->
+    project.configurations.runtimeClasspath.resolvedConfiguration.resolvedArtifacts.each { artifact ->
         def artifactId = artifact.id.componentIdentifier.toString()
         if (!artifactId.startsWith("project :")) { // exclude project dependencies
           allRuntimeDependencies.put(artifactId, artifact)
         }
       }
-    }
     // write lockfile
     def depList = allRuntimeDependencies.collect { artifactId, artifact -> artifactId }.sort()
     new File(rootProject.buildDir, "gradle.lockfile").withWriter { w ->
