@@ -1,0 +1,39 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the
+// README at: https://github.com/devcontainers/templates/tree/main/src/alpine
+{
+	"name": "Alpine",
+	// Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
+	"image": "mcr.microsoft.com/devcontainers/base:alpine-3.20",
+
+	// "build": {
+	// 	"dockerfile": "Dockerfile", // 指定 dockerfile 文件的路径
+	// 	"args": { "VARIANT": "18-buster-slim" } // node 版本，传入 dockerfile
+	//   },	
+
+	// Features to add to the dev container. More info: https://containers.dev/features.
+	// "features": {},
+
+	// Use 'forwardPorts' to make a list of ports inside the container available locally.
+	// "forwardPorts": [],
+
+	// Use 'postCreateCommand' to run commands after the container is created.
+	"postCreateCommand": "sh /workspaces/alpine/.devcontainer/init.sh",
+
+	// Configure tool-specific properties.
+	// "customizations": {},
+
+	// Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
+	// "remoteUser": "root"
+
+	"shutdownAction": "stopContainer",
+
+
+	  // 挂载 volume，将本地的 pnpm 目录挂载到容器中，共享一个 pnpm 目录，节省空间
+	//   "mounts": [
+	// 	{
+	// 	  "source": "${localEnv:HOME}/Library/pnpm",
+	// 	  "target": "/root/.local/share/pnpm",
+	// 	  "type": "bind"
+	// 	}
+	//   ],
+}
