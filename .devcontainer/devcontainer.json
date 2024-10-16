@@ -26,6 +26,14 @@
 	// "remoteUser": "root"
 
 	"shutdownAction": "stopContainer",
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"vscjava.vscode-java-pack",
+				"vscjava.vscode-gradle"
+			]
+		}
+	},
 
 
 	  // 挂载 volume，将本地的 pnpm 目录挂载到容器中，共享一个 pnpm 目录，节省空间
