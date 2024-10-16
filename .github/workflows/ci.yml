@@ -19,19 +19,36 @@ jobs:
       uses: actions/setup-java@v2
       with:
        java-version: '17'
-       distribution: 'temurin'     
+       distribution: 'temurin'            
     - name: Build with Gradle
       run: ./gradlew build -xtest
 
     - name: Trivy with Gradle
-      run: ./gradlew generateLockfile
+      run: 
+       - ./gradlew generateLockfile
+       - cat 
+       
 
     - name: Run Trivy vulnerability scanner in fs mode
       uses: aquasecurity/trivy-action@0.28.0
       with:
         scan-type: 'fs'
         scan-ref: './build/gradle.lockfile'
-        trivy-config: trivy.yaml  
+        output: ./build/result.json
+        format: json
+
+    - uses: actions/upload-artifact@v4
+      with:
+        name: lockfile
+        path: ./build/gradle.lockfile
+        compression-level: 0 # no compression
+
+
+    - name: Upload build artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: trivy-result
+        path: ./build/result.json
 
     # - name: Run tests
     #   run: ./gradlew test              
