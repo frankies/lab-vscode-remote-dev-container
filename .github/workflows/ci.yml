@@ -9,6 +9,9 @@ on:
 jobs:
   build: 
    runs-on: ubuntu-latest 
+   env:
+    TRIVY_DB_REPOSITORY: ghcr.io/aquasecurity/trivy-db,public.ecr.aws/aquasecurity/trivy-db
+    ENV TRIVY_JAVA_DB_REPOSITORY: ghcr.io/aquasecurity/trivy-java-db,public.ecr.aws/aquasecurity/trivy-java-db
    steps:
     - name: Checkout code
       uses: actions/checkout@v2
