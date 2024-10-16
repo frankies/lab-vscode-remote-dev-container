@@ -25,9 +25,10 @@ jobs:
 
     - name: Run Trivy vulnerability scanner in fs mode
       uses: aquasecurity/trivy-action@0.20.0
-    - name: Run tests
-      run: ./gradlew test      
       with:
         scan-type: 'fs'
         scan-ref: './build/gradle.lockfile'
         trivy-config: trivy.yaml  
+
+    - name: Run tests
+      run: ./gradlew test              
